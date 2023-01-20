@@ -17,7 +17,7 @@ type Api struct {
 
 var ApiRequest = Api{
     accessToken: "",
-    envDomain: string(square.Environment.Sandbox),
+    envDomain: string(square.Environments.Sandbox),
 }
 
 
