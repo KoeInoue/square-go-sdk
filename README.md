@@ -5,6 +5,7 @@
 ![go](https://img.shields.io/github/go-mod/go-version/KoeInoue/square-go-sdk)
 ![license](https://img.shields.io/github/license/KoeInoue/square-go-sdk)
 ![star](https://img.shields.io/github/stars/KoeInoue/square-go-sdk?style=social)
+[![Go Test](https://github.com/KoeInoue/square-go-sdk/actions/workflows/go-test.yml/badge.svg)](https://github.com/KoeInoue/square-go-sdk/actions/workflows/go-test.yml)
 
 # Tags
 
