@@ -1,0 +1,22 @@
+{
+  "[go]": {
+    "editor.tabSize": 4,
+    "editor.snippetSuggestions": "none",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+    },
+  },
+  "gopls": {
+    "usePlaceholders": false
+  },
+  "go.formatTool": "gofmt",
+  "go.lintOnSave":"workspace",
+  "go.lintTool": "golangci-lint",
+  "go.lintFlags": [
+    "--fast"
+  ],
+  "yaml.schemas": {
+    "https://raw.githubusercontent.com/awslabs/goformation/master/schema/sam.schema.json": "file:///Users/koinoue/workspace/ielts-writing-helper/backend/template.yaml"
+  }
+}
