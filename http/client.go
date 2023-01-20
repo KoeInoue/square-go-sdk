@@ -6,14 +6,12 @@ import (
 )
 
 type Client struct {
-    config square.Config
-    customerApi api.CustomerApiInterface
+    CustomerApi api.CustomerApiInterface
 }
 
 func NewClient(config square.Config) *Client {
     api.NewApi(config.AccessToken, string(config.Environment.Sandbox))
     return &Client{
-        config: config,
-        customerApi: api.NewCustomerApi(),
+        CustomerApi: api.NewCustomerApi(),
     }
 }
