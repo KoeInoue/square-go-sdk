@@ -6,14 +6,13 @@ import (
 )
 
 type Client struct {
-    config square.Config
     customerApi api.CustomerApiInterface
 }
 
-func NewClient(config square.Config) *Client {
-    api.NewApi(config.AccessToken, string(config.Environment.Sandbox))
+func NewClient[T square.Env](config square.Config[T]) *Client {
+    api.NewApi(config.AccessToken, string(config.Environment))
+
     return &Client{
-        config: config,
         customerApi: api.NewCustomerApi(),
     }
 }
