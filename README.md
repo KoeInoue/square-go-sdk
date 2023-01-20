@@ -21,10 +21,34 @@ go install github.com/KoeInoue/square-go-sdk
 ```go
 package main
 
-import "github.com/KoeInoue/square-go-sdk"
+import (
+    "os"
+
+	"github.com/KoeInoue/square-go-sdk"
+	"github.com/KoeInoue/square-go-sdk/http"
+	"github.com/KoeInoue/square-go-sdk/models"
+)
+
+func getClient() *http.Client {
+    envType := os.Getenv("ENV")
+    accessToken := os.Getenv("SQUARE_ACCESS_TOKEN")
+
+    if envType != "production" {
+        return http.NewClient[square.Sandbox](square.Config[square.Sandbox]{
+            AccessToken: accessToken,
+            Environment: square.Environments.Sandbox,
+        })
+    } else {
+        return http.NewClient[square.Production](square.Config[square.Production]{
+            AccessToken: accessToken,
+            Environment: square.Environments.Production,
+        })
+    }
+}
 
 func main() {
-
+    client := getClient()
+    client.CustomerApi.CreateCustomer()
 }
 ```
 
