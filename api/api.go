@@ -14,8 +14,8 @@ const HTTP_POST = "POST"
 const HTTP_GET = "GET"
 
 type endpoint struct {
-    path string
-    method string
+	path   string
+	method string
 }
 
 // Api has config data for calling api
@@ -26,8 +26,8 @@ type Api struct {
 
 // ApiRequest is struct to call api
 var ApiRequest = Api{
-    accessToken: "",
-    envDomain: string(square.Environments.Sandbox),
+	accessToken: "",
+	envDomain:   string(square.Environments.Sandbox),
 }
 
 // NewApi returns api client
@@ -40,16 +40,16 @@ func NewApi(accessToken string, envDomain string) {
 
 // postRequest call http post request
 func request[Req any, Res any](reqBody Req, res Res, path string, method string) (*Res, error) {
-    var body *bytes.Reader
-    var err error
-    if method == HTTP_POST {
-        body, err = getByteBody(reqBody)
-        if err != nil {
-            return nil, err
-        }
-    } else if method == HTTP_GET {
-        body = nil
-    }
+	var body *bytes.Reader
+	var err error
+	if method == HTTP_POST {
+		body, err = getByteBody(reqBody)
+		if err != nil {
+			return nil, err
+		}
+	} else if method == HTTP_GET {
+		body = nil
+	}
 
 	req, err := http.NewRequest(method, ApiRequest.envDomain+path, body)
 	if err != nil {

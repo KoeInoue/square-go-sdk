@@ -7,14 +7,14 @@ import (
 
 // Client is http client
 type Client struct {
-    CustomerApi api.CustomersApiInterface
+	CustomerApi api.CustomersApiInterface
 }
 
 // NewClient returns Client struct pointer
 func NewClient[T square.Env](config square.Config[T]) *Client {
-    api.NewApi(config.AccessToken, string(config.Environment))
+	api.NewApi(config.AccessToken, string(config.Environment))
 
-    return &Client{
-        CustomerApi: api.NewCustomerApi(),
-    }
+	return &Client{
+		CustomerApi: api.NewCustomerApi(),
+	}
 }
