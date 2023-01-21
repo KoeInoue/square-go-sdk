@@ -15,9 +15,10 @@ type Config[T Env] struct {
 }
 
 const (
-    ENV_SANDBOX = Sandbox("https://connect.squareupsandbox.com")
-    ENV_PRODUCTION = Production("https://connect.squareup.com")
+	ENV_SANDBOX    = Sandbox("https://connect.squareupsandbox.com")
+	ENV_PRODUCTION = Production("https://connect.squareup.com")
 )
+
 // Environment has part of the domain that varies with the environment.
 var Environments = struct{
     Sandbox Sandbox

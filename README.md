@@ -17,7 +17,28 @@
 go install github.com/KoeInoue/square-go-sdk
 ```
 
+or
+
+import the package in a file where you want to use the package
+```go
+import "github.com/KoeInoue/square-go-sdk"
+```
+
+then run
+```go
+go mod tidy
+```
+
 # Minimal Example
+
+1. Set environment variables
+```shell
+export SQUARE_ACCESS_TOKEN=yourSandboxAccessToken
+export ENV=dev
+```
+※ ENV is a variable that just identifies the environment
+
+2. Write code
 
 ```go
 package main
