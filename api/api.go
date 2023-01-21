@@ -40,21 +40,26 @@ func NewApi(accessToken string, envDomain string) {
 
 // postRequest call http post request
 func request[Req any, Res any](reqBody Req, res Res, path string, method string) (*Res, error) {
-	var body *bytes.Reader
+    var req *http.Request
 	var err error
 	if method == HTTP_POST {
-		body, err = getByteBody(reqBody)
+		body, err := getByteBody(reqBody)
 		if err != nil {
 			return nil, err
 		}
+        req, err = http.NewRequest(method, ApiRequest.envDomain+path, body)
+
+        if err != nil {
+            return nil, err
+        }
 	} else if method == HTTP_GET {
-		body = nil
+        req, err = http.NewRequest(method, ApiRequest.envDomain+path, nil)
 	}
 
-	req, err := http.NewRequest(method, ApiRequest.envDomain+path, body)
 	if err != nil {
 		return nil, err
 	}
+
 	setHeaders(req)
 
 	resp, err := http.DefaultClient.Do(req)
