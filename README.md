@@ -79,10 +79,10 @@ func main() {
 ### Payments
 - [Cards](https://github.com/KoeInoue/square-go-sdk/blob/v0.1.3/doc/api/cards.md)
 
-## Subscriptions
+### Subscriptions
 - [Subscriptions](https://github.com/KoeInoue/square-go-sdk/blob/v0.1.3/doc/api/subscriptions.md)
 
-## Item
+### Item
 - [Catalog](https://github.com/KoeInoue/square-go-sdk/blob/v0.1.3/doc/api/catalog.md)
 
 ### Customers
