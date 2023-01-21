@@ -7,7 +7,7 @@ import (
 
 // Client is http client
 type Client struct {
-    CustomerApi api.CustomerApiInterface
+    CustomerApi api.CustomersApiInterface
 }
 
 // NewClient returns Client struct pointer

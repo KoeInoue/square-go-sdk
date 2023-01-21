@@ -7,11 +7,11 @@
 ![star](https://img.shields.io/github/stars/KoeInoue/square-go-sdk?style=social)
 [![Go Test](https://github.com/KoeInoue/square-go-sdk/actions/workflows/go-test.yml/badge.svg)](https://github.com/KoeInoue/square-go-sdk/actions/workflows/go-test.yml)
 
-# Tags
+## Tags
 
 `go` `square`
 
-# Installation
+## Installation
 
 ```shell
 go install github.com/KoeInoue/square-go-sdk
@@ -29,7 +29,7 @@ then run
 go mod tidy
 ```
 
-# Minimal Example
+## Minimal Example
 
 1. Set environment variables
 ```shell
@@ -74,12 +74,14 @@ func main() {
 }
 ```
 
-# Contributors
+## SDK Reference
+
+### Customers
+* [Customers]
+
+## Contributors
 
 - [Koe Inoue](https://github.com/KoeInoue)
 
-# Users
-
-- [Koe Inoue](https://github.com/KoeInoue)
 
 <!-- CREATED_BY_LEADYOU_README_GENERATOR -->
