@@ -1,7 +1,7 @@
 package models
 
 type ListCatalogRequest struct {
-	cursor         string
-	types          string
-	catalogVersion int64
+	Cursor         string `json:"cursor,omitempty"`
+	Types          string `json:"types,omitempty"`
+	CatalogVersion int64  `json:"catalog_version,omitempty"`
 }
