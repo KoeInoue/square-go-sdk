@@ -4,21 +4,25 @@ import (
 	"github.com/KoeInoue/square-go-sdk/models"
 )
 
-type CustomerApiInterface interface {
-    CreateCustomer(models.CreateCustomerRequest) (*models.CreateCustomerResponse, error)
+// CustomerApiInterface defines the interface for the CustomerApi
+type CustomersApiInterface interface {
+	CreateCustomer(models.CreateCustomerRequest) (*models.CreateCustomerResponse, error)
 }
 
-type CustomerApi struct {
-    createCustomerPath string
+// CustomerApi is a struct that implements CustomerApiInterface
+type CustomersApi struct {
+	createCustomerPath string
 }
 
-func NewCustomerApi() * CustomerApi {
-    return &CustomerApi{
-        createCustomerPath: "/v2/customers",
-    }
+// NewCustomerApi returns a new CustomerApi
+func NewCustomerApi() *CustomersApi {
+	return &CustomersApi{
+		createCustomerPath: "/v2/customers",
+	}
 }
 
-func (api *CustomerApi) CreateCustomer(req models.CreateCustomerRequest) (*models.CreateCustomerResponse, error) {
-    res := models.CreateCustomerResponse{}
-    return postRequest(req, res, api.createCustomerPath)
+// CreateCustomer create customer
+func (api *CustomersApi) CreateCustomer(req models.CreateCustomerRequest) (*models.CreateCustomerResponse, error) {
+	res := models.CreateCustomerResponse{}
+	return postRequest(req, res, api.createCustomerPath)
 }
