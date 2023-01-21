@@ -77,7 +77,13 @@ func main() {
 ## SDK Reference
 
 ### Payments
-- [Cards](https://github.com/KoeInoue/square-go-sdk/blob/v0.1.3/doc/api/cards.md#cards)
+- [Cards](https://github.com/KoeInoue/square-go-sdk/blob/v0.1.3/doc/api/cards.md)
+
+### Subscriptions
+- [Subscriptions](https://github.com/KoeInoue/square-go-sdk/blob/v0.1.3/doc/api/subscriptions.md)
+
+### Item
+- [Catalog](https://github.com/KoeInoue/square-go-sdk/blob/v0.1.3/doc/api/catalog.md)
 
 ### Customers
 - [Customers](https://github.com/KoeInoue/square-go-sdk/blob/v0.1.3/doc/api/customers.md#customers)
