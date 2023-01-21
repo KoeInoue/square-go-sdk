@@ -18,9 +18,9 @@ type CustomersApi struct {
 func NewCustomerApi() *CustomersApi {
 	return &CustomersApi{
 		createCustomer: endpoint{
-            path: "/v2/customers",
-            method: "POST",
-        },
+			path:   "/v2/customers",
+			method: "POST",
+		},
 	}
 }
 
