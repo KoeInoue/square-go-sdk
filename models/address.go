@@ -2,18 +2,18 @@ package models
 
 // Address represents a postal address in a country.
 type Address struct {
-	AddressLine1                 string `json:"address_line_1"`
-	AddressLine2                 string `json:"address_line_2"`
-	AddressLine3                 string `json:"address_line_3"`
-	Locality                     string `json:"locality"`
-	Sublocality                  string `json:"sublocality"`
-	Sublocality2                 string `json:"sublocality_2"`
-	Sublocality3                 string `json:"sublocality_3"`
-	AdministrativeDistrictLevel1 string `json:"administrative_district_level_1"`
-	AdministrativeDistrictLevel2 string `json:"administrative_district_level_2"`
-	AdministrativeDistrictLevel3 string `json:"administrative_district_level_3"`
-	PostalCode                   string `json:"postal_code"`
-	Country                      string `json:"country"`
-	FirstName                    string `json:"first_name"`
-	LastName                     string `json:"last_name"`
+	AddressLine1                 string `json:"address_line_1,omitempty"`
+	AddressLine2                 string `json:"address_line_2,omitempty"`
+	AddressLine3                 string `json:"address_line_3,omitempty"`
+	Locality                     string `json:"locality,omitempty"`
+	Sublocality                  string `json:"sublocality,omitempty"`
+	Sublocality2                 string `json:"sublocality_2,omitempty"`
+	Sublocality3                 string `json:"sublocality_3,omitempty"`
+	AdministrativeDistrictLevel1 string `json:"administrative_district_level_1,omitempty"`
+	AdministrativeDistrictLevel2 string `json:"administrative_district_level_2,omitempty"`
+	AdministrativeDistrictLevel3 string `json:"administrative_district_level_3,omitempty"`
+	PostalCode                   string `json:"postal_code,omitempty"`
+	Country                      string `json:"country,omitempty"`
+	FirstName                    string `json:"first_name,omitempty"`
+	LastName                     string `json:"last_name,omitempty"`
 }
