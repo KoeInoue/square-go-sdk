@@ -1,16 +1,16 @@
 package models
 
 type CatalogObject struct {
-	Type                  string
-	Id                    string
-	UpdatedAt             string
-	Version               int64
-	IsDeleted             bool
-	CustomAttributeValues string
+	Type                  string `json:"type"`
+	Id                    string `json:"id"`
+	UpdatedAt             string `json:"updated_at"`
+	Version               int64  `json:"version"`
+	IsDeleted             bool   `json:"is_deleted"`
+	CustomAttributeValues string `json:"custom_attribute_values"`
 	// CatalogV1Ids []CatalogV1Id // TODO: implement this
-	PresentAtAllLocations bool
-	PresentAtLocationIds  []string
-	AbsentAtLocationIds   []string
+	PresentAtAllLocations bool     `json:"present_at_all_locations"`
+	PresentAtLocationIds  []string `json:"present_at_location_ids"`
+	AbsentAtLocationIds   []string `json:"absent_at_location_ids"`
 	// TODO: implement below
 	// ItemData CatalogItem
 	// CategoryData CatalogCategory

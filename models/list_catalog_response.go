@@ -1,7 +1,7 @@
 package models
 
 type ListCatalogResponse struct {
-	errors  []Error
-	cursor  string
-	objects []CatalogObject
+	Errors  []Error         `json:"errors,omitempty"`
+	Cursor  string          `json:"cursor,omitempty"`
+	Objects []CatalogObject `json:"objects,omitempty"`
 }
