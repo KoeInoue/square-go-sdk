@@ -10,16 +10,24 @@ import (
 	"github.com/KoeInoue/square-go-sdk/models"
 )
 
+const HTTP_POST = "POST"
+const HTTP_GET = "GET"
+
+type endpoint struct {
+	path   string
+	method string
+}
+
 // Api has config data for calling api
 type Api struct {
 	accessToken string
 	envDomain   string
 }
 
-// Api request is struct to call api
+// ApiRequest is struct to call api
 var ApiRequest = Api{
-    accessToken: "",
-    envDomain: string(square.Environments.Sandbox),
+	accessToken: "",
+	envDomain:   string(square.Environments.Sandbox),
 }
 
 // NewApi returns api client
@@ -31,13 +39,19 @@ func NewApi(accessToken string, envDomain string) {
 }
 
 // postRequest call http post request
-func postRequest[Req any, Res any](reqBody Req, res Res, path string) (*Res, error) {
-	body, err := getByteBody(reqBody)
-	if err != nil {
-		return nil, err
+func request[Req any, Res any](reqBody Req, res Res, path string, method string) (*Res, error) {
+	var body *bytes.Reader
+	var err error
+	if method == HTTP_POST {
+		body, err = getByteBody(reqBody)
+		if err != nil {
+			return nil, err
+		}
+	} else if method == HTTP_GET {
+		body = nil
 	}
 
-	req, err := http.NewRequest("POST", ApiRequest.envDomain+path, body)
+	req, err := http.NewRequest(method, ApiRequest.envDomain+path, body)
 	if err != nil {
 		return nil, err
 	}

@@ -76,8 +76,11 @@ func main() {
 
 ## SDK Reference
 
+### Payments
+- [Cards](https://github.com/KoeInoue/square-go-sdk/blob/v0.1.3/doc/api/cards.md#cards)
+
 ### Customers
-* [Customers]
+- [Customers](https://github.com/KoeInoue/square-go-sdk/blob/v0.1.3/doc/api/customers.md#customers)
 
 ## Contributors
 

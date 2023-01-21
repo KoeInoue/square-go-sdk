@@ -5,6 +5,7 @@
     "editor.codeActionsOnSave": {
         "source.organizeImports": true
     },
+    "editor.formatOnSaveMode": "file"
   },
   "gopls": {
     "usePlaceholders": false
