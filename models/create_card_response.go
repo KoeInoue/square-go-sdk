@@ -5,6 +5,6 @@ package models
 // Note: if there are errors processing the request, the card field will not be
 // present.
 type CreateCardResponse struct {
-	Errors []Error
-	card   Card
+	Errors []Error `json:"errors,omitempty"`
+	card   Card    `json:"card,omitempty"`
 }
