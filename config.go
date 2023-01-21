@@ -4,15 +4,14 @@ type Sandbox string
 type Production string
 
 // Environment has part of the domain that varies with the environment.
-type Env struct {
-	Sandbox    Sandbox
-	Production Production
+type Env interface {
+    Sandbox | Production
 }
 
 // Config struct contains access token and environment
-type Config struct {
-	AccessToken string
-	Environment Env
+type Config[T Env] struct {
+    AccessToken string
+    Environment T
 }
 
 const (
@@ -21,7 +20,10 @@ const (
 )
 
 // Environment has part of the domain that varies with the environment.
-var Environment = Env{
-	Sandbox:    ENV_SANDBOX,
-	Production: ENV_PRODUCTION,
+var Environments = struct{
+    Sandbox Sandbox
+    Production Production
+}{
+    Sandbox: ENV_SANDBOX,
+    Production: ENV_PRODUCTION,
 }

@@ -18,8 +18,8 @@ type Api struct {
 
 // Api request is struct to call api
 var ApiRequest = Api{
-	accessToken: "",
-	envDomain:   string(square.Environment.Sandbox),
+    accessToken: "",
+    envDomain: string(square.Environments.Sandbox),
 }
 
 // NewApi returns api client
