@@ -6,5 +6,5 @@ package models
 // present.
 type CreateCardResponse struct {
 	Errors []Error `json:"errors,omitempty"`
-	card   Card    `json:"card,omitempty"`
+	Card   Card    `json:"card,omitempty"`
 }
