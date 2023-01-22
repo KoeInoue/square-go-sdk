@@ -8,22 +8,15 @@ type SubscriptionApiInterface interface {
 }
 
 // SubscriptionApi is a struct that implements SubscriptionApiInterface
-type SubscriptionApi struct {
-	createSubscription endpoint
-}
+type SubscriptionApi struct {}
 
 // NewSubscriptionApi returns a new SubscriptionApi
 func NewSubscriptionApi() *SubscriptionApi {
-	return &SubscriptionApi{
-		createSubscription: endpoint{
-			path:   "/v2/subscriptions",
-			method: "POST",
-		},
-	}
+	return &SubscriptionApi{}
 }
 
 // CreateSubscription create new subscription
 func (api *SubscriptionApi) CreateSubscription(req models.CreateSubscriptionRequest) (*models.CreateSubscriptionResponse, error) {
 	res := models.CreateSubscriptionResponse{}
-	return request(req, res, api.createSubscription.path, api.createSubscription.method)
+	return request(req, res, "/v2/subscriptions", HTTP_POST)
 }

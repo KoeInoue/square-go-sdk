@@ -13,11 +13,6 @@ import (
 const HTTP_POST = "POST"
 const HTTP_GET = "GET"
 
-type endpoint struct {
-	path   string
-	method string
-}
-
 // Api has config data for calling api
 type Api struct {
 	accessToken string

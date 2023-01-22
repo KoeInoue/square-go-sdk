@@ -10,22 +10,15 @@ type CardApiInterface interface {
 }
 
 // CardsApi is a struct that implements CustomerApiInterface
-type CardsApi struct {
-	createCard endpoint
-}
+type CardsApi struct {}
 
 // NewCardApi returns a new CustomerApi
 func NewCardApi() *CardsApi {
-	return &CardsApi{
-		createCard: endpoint{
-			path:   "/v2/cards",
-			method: "POST",
-		},
-	}
+	return &CardsApi{}
 }
 
 // CreateCard create new card
 func (api *CardsApi) CreateCard(req models.CreateCardRequest) (*models.CreateCardResponse, error) {
 	res := models.CreateCardResponse{}
-	return request(req, res, api.createCard.path, api.createCard.method)
+	return request(req, res, "/v2/cards", HTTP_POST)
 }

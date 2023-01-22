@@ -10,22 +10,15 @@ type CustomersApiInterface interface {
 }
 
 // CustomerApi is a struct that implements CustomerApiInterface
-type CustomersApi struct {
-	createCustomer endpoint
-}
+type CustomersApi struct {}
 
 // NewCustomerApi returns a new CustomerApi
 func NewCustomerApi() *CustomersApi {
-	return &CustomersApi{
-		createCustomer: endpoint{
-			path:   "/v2/customers",
-			method: "POST",
-		},
-	}
+	return &CustomersApi{}
 }
 
 // CreateCustomer create customer
 func (api *CustomersApi) CreateCustomer(req models.CreateCustomerRequest) (*models.CreateCustomerResponse, error) {
 	res := models.CreateCustomerResponse{}
-	return request(req, res, api.createCustomer.path, api.createCustomer.method)
+	return request(req, res, "/v2/customers", HTTP_POST)
 }
