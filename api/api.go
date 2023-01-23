@@ -10,9 +10,6 @@ import (
 	"github.com/KoeInoue/square-go-sdk/models"
 )
 
-const HTTP_POST = "POST"
-const HTTP_GET = "GET"
-
 // Api has config data for calling api
 type Api struct {
 	accessToken string
@@ -33,11 +30,11 @@ func NewApi(accessToken string, envDomain string) {
 	}
 }
 
-// postRequest call http post request
+// request call http post request
 func request[Req any, Res any](reqBody Req, res Res, path string, method string) (*Res, error) {
 	var req *http.Request
 	var err error
-	if method == HTTP_POST {
+	if method == HTTP_POST || method == HTTP_PUT || method == HTTP_PATCH {
 		body, err := getByteBody(reqBody)
 		if err != nil {
 			return nil, err
@@ -47,7 +44,7 @@ func request[Req any, Res any](reqBody Req, res Res, path string, method string)
 		if err != nil {
 			return nil, err
 		}
-	} else if method == HTTP_GET {
+	} else if method == HTTP_GET || method == HTTP_DELETE {
 		req, err = http.NewRequest(method, ApiRequest.envDomain+path, nil)
 	}
 
@@ -58,7 +55,6 @@ func request[Req any, Res any](reqBody Req, res Res, path string, method string)
 	setHeaders(req)
 
 	resp, err := http.DefaultClient.Do(req)
-
 	if err != nil {
 		return nil, err
 	}
