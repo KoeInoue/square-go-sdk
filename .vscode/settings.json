@@ -8,15 +8,14 @@
     "editor.formatOnSaveMode": "file"
   },
   "gopls": {
-    "usePlaceholders": false
+    "usePlaceholders": false,
+    "formatting.gofumpt": true
   },
+  "editor.defaultFormatter": "golang.go",
   "go.formatTool": "gofmt",
   "go.lintOnSave":"workspace",
   "go.lintTool": "golangci-lint",
   "go.lintFlags": [
     "--fast"
   ],
-  "yaml.schemas": {
-    "https://raw.githubusercontent.com/awslabs/goformation/master/schema/sam.schema.json": "file:///Users/koinoue/workspace/ielts-writing-helper/backend/template.yaml"
-  }
 }

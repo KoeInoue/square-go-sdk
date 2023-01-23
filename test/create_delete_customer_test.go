@@ -1,7 +1,6 @@
 package test
 
 import (
-	"log"
 	"reflect"
 	"testing"
 
@@ -9,7 +8,7 @@ import (
 	"github.com/google/uuid"
 )
 
-func TestCreateCustomer(t *testing.T) {
+func TestCreateAndDeleteCustomer(t *testing.T) {
 	cases := []struct {
 		Name        string
 		Request     models.CreateCustomerRequest
@@ -39,8 +38,8 @@ func TestCreateCustomer(t *testing.T) {
 				Category: "INVALID_REQUEST_ERROR",
 				Code:     "BAD_REQUEST",
 				Detail:   "At least one of `given_name`, `family_name`, `company_name`, `email_address`, or `phone_number` is required for a customer.",
-                Field: "",
-            }},
+				Field:    "",
+			}},
 		},
 	}
 
@@ -49,9 +48,6 @@ func TestCreateCustomer(t *testing.T) {
 			t.Helper()
 
 			res, err := client.CustomerApi.CreateCustomer(test.Request)
-
-			log.Printf("res: %#v", res)
-
 			if err != nil {
 				t.Errorf("got error, want nil: %s", err)
 			}
@@ -67,6 +63,19 @@ func TestCreateCustomer(t *testing.T) {
 			if test.IsSquareErr {
 				if !reflect.DeepEqual(res.Errors, test.Error) {
 					t.Errorf("got %#v, want %#v", res.Errors, test.Error)
+				}
+			}
+
+			if len(res.Errors) == 0 && res.Customer.ID != "" {
+				r, err := client.CustomerApi.DeleteCustomer(models.DeleteCustomerRequest{
+					CustomerId: res.Customer.ID,
+					Version:    res.Customer.Version,
+				})
+				if err != nil {
+					t.Errorf("got error, want nil: %s", err)
+				}
+				if len(r.Errors) > 0 {
+					t.Errorf("Square Error: %#v, Code: %s", r.Errors[0].Detail, r.Errors[0].Code)
 				}
 			}
 		})
