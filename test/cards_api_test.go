@@ -20,10 +20,8 @@ func TestListCards(t *testing.T) {
 		t.Error(err)
 	}
 
-	log.Printf("%#v", cardRes)
-
 	res, err := client.CardApi.ListCards(models.ListCardsRequest{
-		CustomerId: testCustomerID,
+		CustomerId: cardRes.Card.CustomerId,
 	})
 	if err != nil {
 		t.Error(err)

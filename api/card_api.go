@@ -28,12 +28,13 @@ func (api *CardsApi) CreateCard(req models.CreateCardRequest) (*models.CreateCar
 
 func (api *CardsApi) ListCards(req models.ListCardsRequest) (*models.ListCardsResponse, error) {
 	res := models.ListCardsResponse{}
+
 	u, err := url.Parse("/v2/cards")
 	if err != nil {
 		return nil, err
 	}
 
-	url := req.GetURLWithQuery(u)
+	url := structToUrlQuery(req, u)
 
 	return request(req, res, url, HTTP_GET)
 }

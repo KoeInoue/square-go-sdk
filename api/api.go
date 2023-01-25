@@ -5,6 +5,10 @@ import (
 	"encoding/json"
 	"io"
 	"net/http"
+	"net/url"
+	"reflect"
+	"strconv"
+	"strings"
 
 	"github.com/KoeInoue/square-go-sdk"
 	"github.com/KoeInoue/square-go-sdk/models"
@@ -89,4 +93,30 @@ func setHeaders(req *http.Request) {
 	req.Header.Set("Square-Version", "2022-12-14")
 	req.Header.Set("Authorization", "Bearer "+ApiRequest.accessToken)
 	req.Header.Set("Content-Type", "application/json")
+}
+
+func structToUrlQuery[T any](req T, u *url.URL) string {
+	values := u.Query()
+	rv := reflect.ValueOf(req)
+	rt := rv.Type()
+	// NumFieldでフィールド数を取得
+	for i := 0; i < rt.NumField(); i++ {
+		field := rt.Field(i)
+		value := rv.FieldByName(field.Name) // value は interface です。
+		kind := field.Type.Kind()
+
+		tag := string(field.Tag.Get("json"))
+		t := strings.Replace(tag, ",omitempty", "", -1)
+		if kind == reflect.String && value.String() != "" {
+			values.Add(t, value.String())
+		}
+
+		if kind == reflect.Bool {
+			values.Add(t, strconv.FormatBool(value.Bool()))
+		}
+	}
+	u.RawQuery = values.Encode()
+	url := u.String()
+
+	return url
 }

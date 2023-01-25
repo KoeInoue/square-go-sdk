@@ -36,6 +36,8 @@ func TestMain(m *testing.M) {
 		IdempotencyKey: uuid.New().String(),
 		ReferenceId:    "Test",
 	})
+
+	log.Println("Test customer created: ", resp.Customer.ID)
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -48,6 +50,7 @@ func TestMain(m *testing.M) {
 	client.CustomerApi.DeleteCustomer(models.DeleteCustomerRequest{
 		CustomerId: testCustomerID,
 	})
+	log.Println("Test customer deleted")
 
 	os.Exit(exitVal)
 }
