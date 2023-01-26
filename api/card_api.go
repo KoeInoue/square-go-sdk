@@ -11,6 +11,7 @@ type CardApiInterface interface {
 	CreateCard(models.CreateCardRequest) (*models.CreateCardResponse, error)
 	ListCards(req models.ListCardsRequest) (*models.ListCardsResponse, error)
 	RetrieveCard(cardID string) (*models.RetrieveCardResponse, error)
+	DisableCard(cardID string) (*models.DisableCardResponse, error)
 }
 
 // CardsApi is a struct that implements CustomerApiInterface
@@ -43,4 +44,10 @@ func (api *CardsApi) ListCards(req models.ListCardsRequest) (*models.ListCardsRe
 func (api *CardsApi) RetrieveCard(cardID string) (*models.RetrieveCardResponse, error) {
 	res := models.RetrieveCardResponse{}
 	return request(struct{}{}, res, "/v2/cards/"+cardID, HTTP_GET)
+}
+
+func (api *CardsApi) DisableCard(cardID string) (*models.DisableCardResponse, error) {
+	res := models.DisableCardResponse{}
+	u := "/v2/cards/" + cardID + "/disable"
+	return request(struct{}{}, res, u, HTTP_POST)
 }

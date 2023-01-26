@@ -30,4 +30,17 @@ func TestListCards(t *testing.T) {
 	if len(retriedCardRes.Errors) > 0 {
 		t.Errorf("Square Error: %#v, Code: %s", retriedCardRes.Errors[0].Detail, retriedCardRes.Errors[0].Code)
 	}
+
+	disCardRes, err := client.CardApi.DisableCard(cardRes.Card.ID)
+	if err != nil {
+		t.Error(err)
+	}
+
+	if len(disCardRes.Errors) > 0 {
+		t.Errorf("Square Error: %#v, Code: %s", disCardRes.Errors[0].Detail, disCardRes.Errors[0].Code)
+	}
+
+	if disCardRes.Card.Enabled == true {
+		t.Errorf("Card is not disabled")
+	}
 }
