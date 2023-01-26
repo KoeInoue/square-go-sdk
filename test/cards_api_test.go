@@ -1,7 +1,6 @@
 package test
 
 import (
-	"log"
 	"testing"
 
 	"github.com/KoeInoue/square-go-sdk/models"
@@ -19,13 +18,16 @@ func TestListCards(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
+	if len(cardRes.Errors) > 0 {
+		t.Errorf("Square Error: %#v, Code: %s", cardRes.Errors[0].Detail, cardRes.Errors[0].Code)
+	}
 
-	res, err := client.CardApi.ListCards(models.ListCardsRequest{
-		CustomerId: cardRes.Card.CustomerId,
-	})
+	retriedCardRes, err := client.CardApi.RetrieveCard(cardRes.Card.ID)
 	if err != nil {
 		t.Error(err)
 	}
 
-	log.Printf("%#v", res)
+	if len(retriedCardRes.Errors) > 0 {
+		t.Errorf("Square Error: %#v, Code: %s", retriedCardRes.Errors[0].Detail, retriedCardRes.Errors[0].Code)
+	}
 }

@@ -10,6 +10,7 @@ import (
 type CardApiInterface interface {
 	CreateCard(models.CreateCardRequest) (*models.CreateCardResponse, error)
 	ListCards(req models.ListCardsRequest) (*models.ListCardsResponse, error)
+	RetrieveCard(cardID string) (*models.RetrieveCardResponse, error)
 }
 
 // CardsApi is a struct that implements CustomerApiInterface
@@ -37,4 +38,9 @@ func (api *CardsApi) ListCards(req models.ListCardsRequest) (*models.ListCardsRe
 	url := structToUrlQuery(req, u)
 
 	return request(req, res, url, HTTP_GET)
+}
+
+func (api *CardsApi) RetrieveCard(cardID string) (*models.RetrieveCardResponse, error) {
+	res := models.RetrieveCardResponse{}
+	return request(struct{}{}, res, "/v2/cards/"+cardID, HTTP_GET)
 }
