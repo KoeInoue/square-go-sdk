@@ -21,7 +21,7 @@ func TestMain(m *testing.M) {
 	log.Println("-------- Do stuff BEFORE the tests!")
 	err := godotenv.Load("../.env")
 	if err != nil {
-		log.Fatalln("Failed to load .env file")
+		log.Println("Failed to load .env file")
 	}
 
 	client = http.NewClient(square.Config[square.Sandbox]{
