@@ -10,22 +10,15 @@ type CatalogApiInterface interface {
 }
 
 // CatalogApi is a struct that implements CatalogApiInterface
-type CatalogApi struct {
-	listCatalog endpoint
-}
+type CatalogApi struct {}
 
 // NewCatalogApi returns a new CatalogApi
 func NewCatalogApi() *CatalogApi {
-	return &CatalogApi{
-		listCatalog: endpoint{
-			path:   "/v2/catalog/list",
-			method: "GET",
-		},
-	}
+	return &CatalogApi{}
 }
 
 // CreateCatalog returns list of catalog objects
 func (api *CatalogApi) ListCatalog(req models.ListCatalogRequest) (*models.ListCatalogResponse, error) {
 	res := models.ListCatalogResponse{}
-	return request(req, res, api.listCatalog.path, api.listCatalog.method)
+	return request(req, res, "/v2/catalog/list", HTTP_GET)
 }

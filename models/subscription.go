@@ -1,7 +1,7 @@
 package models
 
 type Subscription struct {
-	Id                 string               `json:"id,omitempty"`
+	ID                 string               `json:"id,omitempty"`
 	LocationId         string               `json:"location_id,omitempty"`
 	PlanId             string               `json:"plan_id,omitempty"`
 	CustomerId         string               `json:"customer_id,omitempty"`

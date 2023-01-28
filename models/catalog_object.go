@@ -2,7 +2,7 @@ package models
 
 type CatalogObject struct {
 	Type                  string `json:"type"`
-	Id                    string `json:"id"`
+	ID                    string `json:"id"`
 	UpdatedAt             string `json:"updated_at"`
 	Version               int64  `json:"version"`
 	IsDeleted             bool   `json:"is_deleted"`

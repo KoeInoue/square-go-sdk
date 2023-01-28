@@ -1,6 +1,8 @@
 package http
 
 import (
+	"log"
+
 	"github.com/KoeInoue/square-go-sdk"
 	"github.com/KoeInoue/square-go-sdk/api"
 )
@@ -15,6 +17,8 @@ type Client struct {
 
 // NewClient returns Client struct pointer
 func NewClient[T square.Env](config square.Config[T]) *Client {
+	log.SetFlags(log.Ldate | log.Ltime | log.Lshortfile)
+
 	api.NewApi(config.AccessToken, string(config.Environment))
 
 	return &Client{
