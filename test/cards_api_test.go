@@ -7,12 +7,13 @@ import (
 	"github.com/google/uuid"
 )
 
-func TestListCards(t *testing.T) {
+// TestCardsApi is a test for CardApi TODO: Add more test cases
+func TestCardsApi(t *testing.T) {
 	cardRes, err := client.CardApi.CreateCard(models.CreateCardRequest{
 		SourceId:       "cnon:card-nonce-ok",
 		IdempotencyKey: uuid.New().String(),
 		Card: models.Card{
-			CustomerId: testCustomerID,
+			CustomerId: testCustomer.ID,
 		},
 	})
 	if err != nil {
