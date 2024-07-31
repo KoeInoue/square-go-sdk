@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"io"
+	"log"
 	"net/http"
 	"net/url"
 	"reflect"
@@ -44,7 +45,6 @@ func request[Req any, Res any](reqBody Req, res Res, path string, method string)
 			return nil, err
 		}
 		req, err = http.NewRequest(method, ApiRequest.envDomain+path, body)
-
 		if err != nil {
 			return nil, err
 		}
@@ -66,6 +66,8 @@ func request[Req any, Res any](reqBody Req, res Res, path string, method string)
 	defer resp.Body.Close()
 
 	rBody, _ := io.ReadAll(resp.Body)
+	b, err := json.MarshalIndent(string(rBody), "", "  ")
+	log.Println(string(b))
 
 	if err := json.Unmarshal(rBody, &res); err != nil {
 		errRes := models.Error{}
