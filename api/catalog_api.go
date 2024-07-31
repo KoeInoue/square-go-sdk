@@ -7,6 +7,7 @@ import (
 // CatalogApiInterface defines the interface for the CatalogApi
 type CatalogApiInterface interface {
 	ListCatalog(models.ListCatalogRequest) (*models.ListCatalogResponse, error)
+	RetrieveCatalogObject(objectID string) (*models.CatalogObject, error)
 }
 
 // CatalogApi is a struct that implements CatalogApiInterface
