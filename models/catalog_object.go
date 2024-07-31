@@ -7,49 +7,49 @@ type CatalogResponse struct {
 }
 
 type CatalogObject struct {
-	Type                  string   `json:"type"` // This will directly match the JSON type field.
-	ID                    string   `json:"id"`
-	UpdatedAt             string   `json:"updated_at"`
-	CreatedAt             string   `json:"created_at"`
-	Version               int64    `json:"version"`
-	IsDeleted             bool     `json:"is_deleted"`
-	PresentAtAllLocations bool     `json:"present_at_all_locations"`
-	ItemData              ItemData `json:"item_data"`
+	Type                  string               `json:"type"` // Correctly matches "SUBSCRIPTION_PLAN" or other types as per the JSON
+	ID                    string               `json:"id"`
+	UpdatedAt             string               `json:"updated_at"`
+	CreatedAt             string               `json:"created_at"`
+	Version               int64                `json:"version"`
+	IsDeleted             bool                 `json:"is_deleted"`
+	PresentAtAllLocations bool                 `json:"present_at_all_locations"`
+	SubscriptionPlanData  SubscriptionPlanData `json:"subscription_plan_data,omitempty"`
+	ItemData              SubscriptionPlanData `json:"item_data,omitempty"`
 }
 
-type ItemData struct {
-	Name               string      `json:"name"`
-	IsTaxable          bool        `json:"is_taxable"`
-	Visibility         string      `json:"visibility"`
-	Variations         []Variation `json:"variations"`
-	ProductType        string      `json:"product_type"`
-	SkipModifierScreen bool        `json:"skip_modifier_screen"`
-	EcomVisibility     string      `json:"ecom_visibility"`
+type SubscriptionPlanData struct {
+	Name                       string                      `json:"name"`
+	SubscriptionPlanVariations []SubscriptionPlanVariation `json:"subscription_plan_variations,omitempty"`
+	Variations                 []SubscriptionPlanVariation `json:"variations,omitempty"`
+	EligibleItemIds            []string                    `json:"eligible_item_ids"`
+	AllItems                   bool                        `json:"all_items"`
 }
 
-type Variation struct {
-	Type                  string            `json:"type"` // This matches "ITEM_VARIATION"
-	ID                    string            `json:"id"`
-	UpdatedAt             string            `json:"updated_at"`
-	CreatedAt             string            `json:"created_at"`
-	Version               int64             `json:"version"`
-	IsDeleted             bool              `json:"is_deleted"`
-	PresentAtAllLocations bool              `json:"present_at_all_locations"`
-	ItemVariationData     ItemVariationData `json:"item_variation_data"`
+type SubscriptionPlanVariation struct {
+	Type                          string                        `json:"type"` // "SUBSCRIPTION_PLAN_VARIATION"
+	ID                            string                        `json:"id"`
+	UpdatedAt                     string                        `json:"updated_at"`
+	CreatedAt                     string                        `json:"created_at"`
+	Version                       int64                         `json:"version"`
+	IsDeleted                     bool                          `json:"is_deleted"`
+	PresentAtAllLocations         bool                          `json:"present_at_all_locations"`
+	SubscriptionPlanVariationData SubscriptionPlanVariationData `json:"subscription_plan_variation_data"`
 }
 
-type ItemVariationData struct {
-	ItemID              string     `json:"item_id"`
-	Name                string     `json:"name"`
-	Ordinal             int        `json:"ordinal"`
-	PricingType         string     `json:"pricing_type"`
-	PriceMoney          PriceMoney `json:"price_money"`
-	Sellable            bool       `json:"sellable"`
-	Stockable           bool       `json:"stockable"`
-	SubscriptionPlanIDs []string   `json:"subscription_plan_ids"`
+type SubscriptionPlanVariationData struct {
+	Name               string  `json:"name"`
+	Phases             []Phase `json:"phases"`
+	SubscriptionPlanID string  `json:"subscription_plan_id"`
 }
 
-type PriceMoney struct {
-	Amount   int64  `json:"amount"`
-	Currency string `json:"currency"`
+type Phase struct {
+	UID     string  `json:"uid"`
+	Cadence string  `json:"cadence"`
+	Ordinal int     `json:"ordinal"`
+	Pricing Pricing `json:"pricing"`
+}
+
+type Pricing struct {
+	Type string `json:"type"` // "RELATIVE" or other types as per the JSON
 }
