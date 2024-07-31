@@ -6,6 +6,7 @@ type CreateSubscriptionRequest struct {
 	CustomerId         string             `json:"customer_id"`
 	LocationId         string             `json:"location_id"`
 	PlanId             string             `json:"plan_id"`
+	PlanVariationId    string             `json:"plan_variation_id"`
 	IdempotencyKey     string             `json:"idempotency_key"`
 	StartDate          string             `json:"start_date,omitempty"`
 	CanceledDate       string             `json:"canceled_date,omitempty"`
