@@ -7,15 +7,17 @@ type CatalogResponse struct {
 }
 
 type CatalogObject struct {
-	Type                  string               `json:"type"` // Correctly matches "SUBSCRIPTION_PLAN" or other types as per the JSON
-	ID                    string               `json:"id"`
-	UpdatedAt             string               `json:"updated_at"`
-	CreatedAt             string               `json:"created_at"`
-	Version               int64                `json:"version"`
-	IsDeleted             bool                 `json:"is_deleted"`
-	PresentAtAllLocations bool                 `json:"present_at_all_locations"`
-	SubscriptionPlanData  SubscriptionPlanData `json:"subscription_plan_data,omitempty"`
-	ItemData              SubscriptionPlanData `json:"item_data,omitempty"`
+	Type                  string `json:"type"` // Correctly matches "SUBSCRIPTION_PLAN" or other types as per the JSON
+	ID                    string `json:"id"`
+	UpdatedAt             string `json:"updated_at"`
+	CreatedAt             string `json:"created_at"`
+	Version               int64  `json:"version"`
+	IsDeleted             bool   `json:"is_deleted"`
+	PresentAtAllLocations bool   `json:"present_at_all_locations"`
+	// SubscriptionPlanData shows only if the type is SUBSCRIPTION_PLAN
+	SubscriptionPlanData SubscriptionPlanData `json:"subscription_plan_data,omitempty"`
+	// SubscriptionPlanVariationData shows only if the type is SUBSCRIPTION_PLAN_VARIATION
+	SubscriptionPlanVariationData SubscriptionPlanVariationData `json:"subscription_plan_variation_data,omitempty"`
 }
 
 type SubscriptionPlanData struct {
@@ -51,5 +53,11 @@ type Phase struct {
 }
 
 type Pricing struct {
-	Type string `json:"type"` // "RELATIVE" or other types as per the JSON
+	Type  string `json:"type"`
+	Price Price  `json:"price"`
+}
+
+type Price struct {
+	Amount   int64  `json:"amount"`
+	Currency string `json:"currency"`
 }
