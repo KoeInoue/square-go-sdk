@@ -92,7 +92,7 @@ func getByteBody[T any](req T) (*bytes.Reader, error) {
 
 // setHeaders set header to *http.Request
 func setHeaders(req *http.Request) {
-	req.Header.Set("Square-Version", "2022-12-14")
+	req.Header.Set("Square-Version", "2024-07-17")
 	req.Header.Set("Authorization", "Bearer "+ApiRequest.accessToken)
 	req.Header.Set("Content-Type", "application/json")
 }
