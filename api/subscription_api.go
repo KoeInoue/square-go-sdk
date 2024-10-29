@@ -7,6 +7,7 @@ type SubscriptionApiInterface interface {
 	CreateSubscription(models.CreateSubscriptionRequest) (*models.CreateSubscriptionResponse, error)
 	UpdateSubscription(string, models.UpdateSubscriptionRequest) (*models.UpdateSubscriptionResponse, error)
 	CancelSubscription(string) (*models.CancelSubscriptionResponse, error)
+	SearchSubscriptions(models.SearchSubscriptionsRequest) (*models.SearchSubscriptionsResponse, error)
 }
 
 // SubscriptionApi is a struct that implements SubscriptionApiInterface
@@ -35,4 +36,10 @@ func (api *SubscriptionApi) CancelSubscription(subscriptionID string) (*models.C
 	res := models.CancelSubscriptionResponse{}
 	u := "/v2/subscriptions/" + subscriptionID + "/cancel"
 	return request(struct{}{}, res, u, HTTP_POST)
+}
+
+// SearchSubscriptions searches for subscriptions
+func (api *SubscriptionApi) SearchSubscriptions(req models.SearchSubscriptionsRequest) (*models.SearchSubscriptionsResponse, error) {
+	res := models.SearchSubscriptionsResponse{}
+	return request(req, res, "/v2/subscriptions/search", HTTP_POST)
 }
