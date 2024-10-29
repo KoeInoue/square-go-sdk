@@ -11,5 +11,5 @@ type SearchSubscriptionsRequest struct {
 // SearchSubscriptionsQuery represents the query conditions for searching subscriptions
 type SearchSubscriptionsQuery struct {
 	// Define the fields as per the Square API documentation
-	FilterConditions map[string]interface{} `json:"filter_conditions,omitempty"`
+	FilterConditions map[string]interface{} `json:"filter,omitempty"`
 }
